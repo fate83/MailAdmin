@@ -1,0 +1,28 @@
+h1 Postfächer Administration
+
+p
+  = link_to new_user_path, class: 'btn btn-success' do
+    | Neues Postfach anlegen
+
+table.table.table-striped.table-bordered.table-condensed.table-hover
+  tr
+    th Name
+    th Domain
+    th.text-center Aktionen
+
+  thead
+  tbody
+    - @users.each do |user|
+      tr
+        td = user.username
+        td = user.domain.name
+
+        td.text-center
+          .btn-group
+            = link_to edit_user_path(user), class: 'btn btn-sm btn-info', title: 'Bearbeiten' do
+              span.glyphicon.glyphicon-wrench
+            = link_to edit_password_user_path(user), class: 'btn btn-sm btn-warning', title: 'Passwort ändern' do
+              span.glyphicon.glyphicon-certificate
+            = link_to user, class: 'btn btn-sm btn-danger', title: 'Löschen', method: :delete,
+                      data: {confirm: "Möchten Sie dieses Postfach '#{user.username}' wirklich löschen?"} do
+              span.glyphicon.glyphicon-remove

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141208224919) do
+ActiveRecord::Schema.define(version: 20141210152602) do
 
   create_table "admins", force: true do |t|
     t.string   "email",                  default: "",    null: false
@@ -40,5 +40,15 @@ ActiveRecord::Schema.define(version: 20141208224919) do
   end
 
   add_index "domains", ["admin_id"], name: "index_domains_on_admin_id"
+
+  create_table "users", force: true do |t|
+    t.integer  "domain_id"
+    t.string   "username"
+    t.string   "password"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "users", ["domain_id"], name: "index_users_on_domain_id"
 
 end

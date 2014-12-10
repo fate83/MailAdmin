@@ -5,13 +5,13 @@ class AdminsController < ApplicationController
   end
 
   def new
-    authorize! :manage, Admin
     @admin = Admin.new
+    authorize! :manage, @admin
   end
 
   def create
-    authorize! :manage, Admin
     @admin = Admin.new admin_params
+    authorize! :manage, @admin
 
     if @admin.save
       redirect_to admins_path, notice: 'Admin wurde erfolgreich angelegt!'
@@ -21,13 +21,13 @@ class AdminsController < ApplicationController
   end
 
   def edit
-    authorize! :manage, Admin
     @admin = Admin.find(params[:id])
+    authorize! :manage, @admin
   end
 
   def update
-    authorize! :manage, Admin
     @admin = Admin.find(params[:id])
+    authorize! :manage, @admin
 
     if @admin.update_attributes(admin_params)
       redirect_to admins_path, notice: 'Admin wurde erfolgreich geändert!'
@@ -37,13 +37,13 @@ class AdminsController < ApplicationController
   end
 
   def edit_password
-    authorize! :change_password, Admin
     @admin = Admin.find(params[:id])
+    authorize! :change_password, @admin
   end
 
   def update_password
-    authorize! :change_password, Admin
     @admin = Admin.find(params[:id])
+    authorize! :change_password, @admin
 
     if @admin.update_attributes(admin_params)
       redirect_to root_path, notice: 'Passwort wurde erfolgreich geändert!'
@@ -53,8 +53,8 @@ class AdminsController < ApplicationController
   end
 
   def destroy
-    authorize! :manage, Admin
     @admin = Admin.find(params[:id])
+    authorize! :manage, @admin
     @admin.destroy
     redirect_to admins_path
   end

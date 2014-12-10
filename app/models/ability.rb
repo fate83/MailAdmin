@@ -1,13 +1,21 @@
 class Ability
   include CanCan::Ability
 
-  def initialize(user)
+  def initialize(admin)
 
-    if user.admin?
+    alias_action :read, :update, :change_password, :destroy, :to => :rud
+
+    if admin.admin?
       can :manage, :all
     end
 
-    can :change_password, Admin, admin_id: user.id
+    can :change_password, Admin, admin_id: admin.id
+
+    can :create, User if admin.domains.any?
+    can :rud, User do |user|
+      admin.domains.include? user.domain
+    end
+    cannot :read, User if admin.domains.empty?
 
     # Define abilities for the passed in user here. For example:
     #

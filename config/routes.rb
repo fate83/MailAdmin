@@ -10,7 +10,12 @@ Rails.application.routes.draw do
   end
 
   resources :domains, except: [:show]
-  resources :users, except: [:show]
+  resources :users, except: [:show] do
+    member do
+      get 'edit_password'
+      patch 'update_password'
+    end
+  end
 
   get 'home/index'
   root to: "home#index"

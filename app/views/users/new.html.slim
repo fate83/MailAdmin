@@ -1,0 +1,13 @@
+.panel.panel-success
+  .panel-heading
+    h4 Neues Postfach
+  .panel-body
+    = bootstrap_form_for @user, layout: :horizontal do |f|
+      = f.text_field :username, label: 'Name des Postfach', placeholder: 'z.B. max.mustermann'
+      = f.password_field :password
+      = f.collection_select :domain_id, current_admin.domains, :id, :name, label: "Domain"
+
+      = f.form_group
+        = f.submit class: 'btn btn-success'
+        = " "
+        = link_to "Abbrechen", users_path, class: 'btn btn-default'

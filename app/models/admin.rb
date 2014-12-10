@@ -5,4 +5,5 @@ class Admin < ActiveRecord::Base
          :recoverable, :trackable, :validatable
 
   has_many :domains
+  has_many :users, through: :domains
 end
