@@ -1,0 +1,22 @@
+h1 Domain Admin Administration
+
+p
+  = link_to new_admin_path, class: 'btn btn-success' do
+    | Neuen Domain Admin anlegen
+
+
+table.table.table-striped
+  thead
+    th #
+    th E-Mail
+    th Domains
+    th Aktionen
+  tbody
+    - @admins.each do |admin|
+      td = admin.id
+      td = admin.email
+      td = admin.domains.join(", ")
+      td
+        = link_to admin, method: :destroy, class: 'btn btn-sm btn-danger', title: 'Löschen',
+                  data: {confirm: "Möchten Sie den Domain Admin '#{admin.email}' wirklich löschen?"} do
+          span.glyphicon.glyphicon-remove
