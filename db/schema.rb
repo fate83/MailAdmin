@@ -33,10 +33,10 @@ ActiveRecord::Schema.define(version: 20141210171349) do
   add_index "admins", ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
 
   create_table "aliases", force: true do |t|
+    t.string   "user_source"
     t.integer  "domain_source_id"
-    t.integer  "user_source_id"
-    t.integer  "domain_destination_id"
     t.integer  "user_destination_id"
+    t.integer  "domain_destination_id"
     t.datetime "created_at",            null: false
     t.datetime "updated_at",            null: false
   end

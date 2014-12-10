@@ -14,7 +14,7 @@ table.table.table-striped.table-bordered.table-condensed.table-hover
   tbody
     - @aliases.each do |a|
       tr
-        td = "#{a.user_source.username}@#{a.domain_source.name}"
+        td = "#{a.user_source}@#{a.domain_source.name}"
         td = "#{a.user_destination.username}@#{a.domain_destination.name}"
 
         td.text-center
@@ -22,5 +22,5 @@ table.table.table-striped.table-bordered.table-condensed.table-hover
             = link_to edit_alias_path(a), class: 'btn btn-sm btn-info', title: 'Bearbeiten' do
               span.glyphicon.glyphicon-wrench
             = link_to a, class: 'btn btn-sm btn-danger', title: 'Löschen', method: :delete,
-                      data: {confirm: "Möchten Sie den Alias '#{user.username}' wirklich löschen?"} do
+                      data: {confirm: "Möchten Sie den Alias '#{a.user_source}' wirklich löschen?"} do
               span.glyphicon.glyphicon-remove

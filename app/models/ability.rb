@@ -15,18 +15,17 @@ class Ability
     can :rud, User do |user|
       admin.domains.include? user.domain
     end
-    cannot :read, User if admin.domains.empty?
+    cannot :read, User unless admin.admin? || admin.domains.any?
 
     can :create, Alias if admin.domains.any?
     can :rud, Alias do |a|
       @can = false
       @can = true if admin.domains.include? a.domain_source
       @can = true if admin.domains.include? a.domain_destination
-      @can = true if admin.users.include? a.user_source
       @can = true if admin.users.include? a.user_destination
       @can
     end
-    cannot :read, Alias if admin.domains.empty?
+    cannot :read, Alias unless admin.admin? || admin.domains.any?
 
     # Define abilities for the passed in user here. For example:
     #
