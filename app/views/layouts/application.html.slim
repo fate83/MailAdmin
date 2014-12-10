@@ -18,10 +18,9 @@ html
 
         #navbar.collapse.navbar-collapse
           ul.nav.navbar-nav
-            li.active
-              a href="#" Home
-            li
-              a href="#about" About
+            - if admin_signed_in?
+              li
+                = link_to "Domain Admins", admins_path
             li
               a href="#contact" Contact
           - if admin_signed_in?
