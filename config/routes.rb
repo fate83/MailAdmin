@@ -7,7 +7,11 @@ Rails.application.routes.draw do
 
   devise_for :admins
 
-  resources :admins, only: [:index, :new, :destroy]
+  resources :admins, except: [:show] do
+    member do
+      get 'edit_password'
+    end
+  end
   get 'home/index'
 
   root to: "home#index"

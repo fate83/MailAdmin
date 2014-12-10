@@ -5,18 +5,31 @@ p
     | Neuen Domain Admin anlegen
 
 
-table.table.table-striped
+table.table.table-striped.table-bordered.table-condensed.table-hover
   thead
     th #
+    th.text-center Admin
     th E-Mail
     th Domains
-    th Aktionen
+    th.text-center Aktionen
   tbody
     - @admins.each do |admin|
-      td = admin.id
-      td = admin.email
-      td = admin.domains.join(", ")
-      td
-        = link_to admin, method: :destroy, class: 'btn btn-sm btn-danger', title: 'Löschen',
-                  data: {confirm: "Möchten Sie den Domain Admin '#{admin.email}' wirklich löschen?"} do
-          span.glyphicon.glyphicon-remove
+      tr
+        td = admin.id
+        td.text-center
+          - if admin.admin?
+            span.glyphicon.glyphicon-ok.alert-success
+          - else
+            span.glyphicon.glyphicon-remove.alert-danger
+
+        td = admin.email
+        td = admin.domains.join(", ")
+        td.text-center
+          .btn-group
+            = link_to edit_admin_path(admin), class: 'btn btn-sm btn-info', title: 'Bearbeiten' do
+              span.glyphicon.glyphicon-wrench
+            = link_to edit_password_admin_path(admin), class: 'btn btn-sm btn-warning', title: 'Passwort ändern' do
+              span.glyphicon.glyphicon-certificate
+            = link_to admin, class: 'btn btn-sm btn-danger', title: 'Löschen', method: :delete,
+                      data: {confirm: "Möchten Sie den Domain Admin '#{admin.email}' wirklich löschen?"} do
+              span.glyphicon.glyphicon-remove

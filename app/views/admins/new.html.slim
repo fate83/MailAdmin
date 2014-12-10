@@ -1,0 +1,13 @@
+
+.panel.panel-success
+  .panel-heading
+    h4 Neuer Domain Admin
+  .panel-body
+    = bootstrap_form_for @admin, layout: :horizontal do |f|
+      = f.text_field :email
+      = f.password_field :password
+      = f.password_field :password_confirmation
+      = f.form_group
+        = f.check_box :admin
+      = f.form_group
+        = f.submit class: 'btn btn-success'
