@@ -53,7 +53,7 @@ end
 
 # Auth stuff
 gem 'devise'
-gem 'cancan'
+gem 'cancancan'
 
 # Bootstrap stuff
 gem 'bootstrap-sass'
