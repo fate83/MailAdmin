@@ -1,0 +1,20 @@
+.panel.panel-success
+  .panel-heading
+    h4 Neuer Alias
+  .panel-body
+    = bootstrap_form_for @alias, layout: :inline do |f|
+      .row
+        .col-md-6
+          = f.collection_select :user_source_id, current_admin.users, :id, :username, label: "Quelle: "
+          = " @ "
+          = f.collection_select :domain_source_id, current_admin.domains, :id, :name, hide_label: true
+      .row
+        .col-md-6
+          = f.collection_select :user_destination_id, current_admin.users, :id, :username, label: "Ziel: "
+          = " @ "
+          = f.collection_select :domain_destination_id, current_admin.domains, :id, :name, hide_label: true
+      p
+      = f.form_group
+        = f.submit class: 'btn btn-success'
+        = " "
+        = link_to "Abbrechen", users_path, class: 'btn btn-default'

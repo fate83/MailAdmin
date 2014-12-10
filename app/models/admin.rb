@@ -6,4 +6,5 @@ class Admin < ActiveRecord::Base
 
   has_many :domains
   has_many :users, through: :domains
+  has_many :aliases, through: :users
 end

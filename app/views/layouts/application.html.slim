@@ -18,11 +18,16 @@ html
 
         #navbar.collapse.navbar-collapse
           ul.nav.navbar-nav
-            - if admin_signed_in? and can? :manage, Admin
-              li = link_to "Domain Admins", admins_path
-              li = link_to "Domains", domains_path
-            li
-              a href="#contact" Contact
+            - if admin_signed_in?
+              - if can? :manage, Admin
+                li = link_to "Domain Admins", admins_path
+              - if can? :manage, Domain
+                li = link_to "Domains", domains_path
+              - if can? :create, User
+                li = link_to "Postfächer", users_path
+              - if can? :create, Alias
+                li = link_to "Aliase", aliases_path
+
           - if admin_signed_in?
             ul.nav.navbar-nav.navbar-right
               li.dropdown

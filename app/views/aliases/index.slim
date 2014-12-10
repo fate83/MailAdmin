@@ -1,0 +1,26 @@
+h1 Aliase Administration
+
+p
+  = link_to new_alias_path, class: 'btn btn-success' do
+    | Neuen Alias anlegen
+
+table.table.table-striped.table-bordered.table-condensed.table-hover
+  tr
+    th Quelle
+    th Ziel
+    th.text-center Aktionen
+
+  thead
+  tbody
+    - @aliases.each do |a|
+      tr
+        td = "#{a.user_source.username}@#{a.domain_source.name}"
+        td = "#{a.user_destination.username}@#{a.domain_destination.name}"
+
+        td.text-center
+          .btn-group
+            = link_to edit_alias_path(a), class: 'btn btn-sm btn-info', title: 'Bearbeiten' do
+              span.glyphicon.glyphicon-wrench
+            = link_to a, class: 'btn btn-sm btn-danger', title: 'Löschen', method: :delete,
+                      data: {confirm: "Möchten Sie den Alias '#{user.username}' wirklich löschen?"} do
+              span.glyphicon.glyphicon-remove
