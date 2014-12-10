@@ -9,7 +9,8 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :domains
+  resources :domains, except: [:show]
+  resources :users, except: [:show]
 
   get 'home/index'
   root to: "home#index"
