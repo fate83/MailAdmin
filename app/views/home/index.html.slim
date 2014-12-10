@@ -1,2 +1,10 @@
-h1 Home#index
-p Find me in app/views/home/index.html.slim
+h1 Dashboard
+
+.row
+  .col-md-4
+    - if can? :manage, Admin
+      = link_to "Domains Admins Administrieren", admins_path, class: 'btn btn-primary btn-block'
+    - if can? :manage, Domain
+      = link_to "Domains Administrieren", domains_path, class: 'btn btn-primary btn-block'
+    - if can? :create, User
+      = link_to "Postfächer Administrieren", users_path, class: 'btn btn-primary btn-block'
