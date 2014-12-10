@@ -19,8 +19,8 @@ html
         #navbar.collapse.navbar-collapse
           ul.nav.navbar-nav
             - if admin_signed_in? and can? :manage, Admin
-              li
-                = link_to "Domain Admins", admins_path
+              li = link_to "Domain Admins", admins_path
+              li = link_to "Domains", domains_path
             li
               a href="#contact" Contact
           - if admin_signed_in?

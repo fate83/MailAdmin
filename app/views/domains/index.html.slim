@@ -1,0 +1,27 @@
+h1 Domain Administration
+
+p
+  = link_to new_domain_path, class: 'btn btn-success' do
+    | Neuen Domain eintragen
+
+
+table.table.table-striped.table-bordered.table-condensed.table-hover
+  thead
+    th #
+    th FQDN
+    th Domain Admin
+    th.text-center Aktionen
+  tbody
+    - @domains.each do |domain|
+      tr
+        td = domain.id
+        td = domain.name
+        td = domain.admin.email
+
+        td.text-center
+          .btn-group
+            = link_to edit_domain_path(domain), class: 'btn btn-sm btn-info', title: 'Bearbeiten' do
+              span.glyphicon.glyphicon-wrench
+            = link_to domain, class: 'btn btn-sm btn-danger', title: 'Löschen', method: :delete,
+                      data: {confirm: "Möchten Sie die Domain '#{domain.name}' wirklich löschen?"} do
+              span.glyphicon.glyphicon-remove

@@ -1,0 +1,7 @@
+= bootstrap_form_for @domain, layout: :horizontal do |f|
+  = f.text_field :name
+  = f.collection_select :admin_id, Admin.all, :id, :email, label: "Domain Admin"
+  = f.form_group
+    = f.submit class: 'btn btn-success'
+    = " "
+    = link_to "Abbrechen", domains_path, class: 'btn btn-default'
