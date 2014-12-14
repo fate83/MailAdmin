@@ -1,6 +1,11 @@
 class AliasesController < ApplicationController
   def index
     @aliases = current_admin.admin? ? Alias.all : current_admin.aliases
+
+    authorize! :read, Alias
+    @aliases.each do |a|
+      authorize! :read, a
+    end
   end
 
   def new
@@ -22,7 +27,7 @@ class AliasesController < ApplicationController
 
   def edit
     @alias = Alias.find(params[:id])
-    authorize! :update, @user
+    authorize! :update, @alias
   end
 
   def update
