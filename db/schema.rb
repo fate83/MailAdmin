@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141210171349) do
+ActiveRecord::Schema.define(version: 20141214211625) do
 
   create_table "admins", force: true do |t|
     t.string   "email",                  default: "",    null: false
@@ -49,6 +49,17 @@ ActiveRecord::Schema.define(version: 20141210171349) do
   end
 
   add_index "domains", ["admin_id"], name: "index_domains_on_admin_id"
+
+  create_table "forwardings", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "domain_id"
+    t.string   "destination"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "forwardings", ["domain_id"], name: "index_forwardings_on_domain_id"
+  add_index "forwardings", ["user_id"], name: "index_forwardings_on_user_id"
 
   create_table "users", force: true do |t|
     t.integer  "domain_id"

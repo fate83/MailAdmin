@@ -1,0 +1,26 @@
+h1 Weiterleitungen Administration
+
+p
+  = link_to new_forwarding_path, class: 'btn btn-success' do
+    | Neue Weiterleitung einrichten
+
+table.table.table-striped.table-bordered.table-condensed.table-hover
+  tr
+    th Quelle
+    th Ziel
+    th.text-center Aktionen
+
+  thead
+  tbody
+    - @forwardings.each do |f|
+      tr
+        td = "#{f.user.username}@#{f.domain.name}"
+        td = f.destination
+
+        td.text-center
+          .btn-group
+            = link_to edit_forwarding_path(f), class: 'btn btn-sm btn-info', title: 'Bearbeiten' do
+              span.glyphicon.glyphicon-wrench
+            = link_to f, class: 'btn btn-sm btn-danger', title: 'Löschen', method: :delete,
+                      data: {confirm: "Möchten Sie die Weiterleitung nach '#{f.destination}' wirklich löschen?"} do
+              span.glyphicon.glyphicon-remove

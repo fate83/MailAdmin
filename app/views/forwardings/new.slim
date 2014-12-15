@@ -1,0 +1,24 @@
+.panel.panel-success
+  .panel-heading
+    h4 Neue Weiterleitung
+  .panel-body
+    = bootstrap_form_for @forwarding, layout: :inline do |f|
+      .row
+        .col-md-6
+          .panel.panel-default
+            .panel-heading Quelle
+            .panel-body
+              = f.collection_select :user_id, current_admin.users, :id, :username, hide_label: true
+              = " @ "
+              = f.collection_select :domain_id, current_admin.domains, :id, :name, hide_label: true
+        .col-md-6
+          .panel.panel-default
+            .panel-heading Ziel
+            .panel-body
+              = f.text_field :destination, hide_label: true, placeholder: 'z.B. max@mustermann.com'
+      row
+        col-md-12
+          = f.form_group
+            = f.submit class: 'btn btn-success'
+            = " "
+            = link_to "Abbrechen", forwardings_path, class: 'btn btn-default'

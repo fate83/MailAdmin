@@ -27,6 +27,8 @@ html
                 li = link_to "Postfächer", users_path
               - if can? :create, Alias
                 li = link_to "Aliase", aliases_path
+              - if can? :create, Forwarding
+                li = link_to "Weiterleitungen", forwardings_path
 
           - if admin_signed_in?
             ul.nav.navbar-nav.navbar-right

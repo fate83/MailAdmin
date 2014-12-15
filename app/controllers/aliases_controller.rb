@@ -42,6 +42,12 @@ class AliasesController < ApplicationController
     end
   end
 
+  def destroy
+    @alias = Alias.find(params[:id])
+    authorize! :destroy, @alias
+    @alias.destroy
+  end
+
   private
     # Never trust parameters from the scary internet, only allow the white list through.
     def aliases_params

@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :forwardings
+
   devise_for :admins
 
   resources :admins, except: [:show] do

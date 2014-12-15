@@ -27,6 +27,14 @@ class Ability
     end
     cannot :read, Alias unless admin.admin? || admin.domains.any?
 
+    can :create, Forwarding if admin.domains.any?
+    can :rud, Forwarding do |f|
+      @can = false
+      @can = true if admin.domains.include? f.domain
+      @can
+    end
+    cannot :read, Forwarding unless admin.admin? || admin.domains.any?
+
     # Define abilities for the passed in user here. For example:
     #
     #   user ||= User.new # guest user (not logged in)

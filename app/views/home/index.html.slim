@@ -3,12 +3,13 @@ h1 Dashboard
 .row
   .col-md-4
     - if can? :manage, Admin
-      = link_to "Domains Admins Administrieren", admins_path, class: 'btn btn-primary btn-block'
+      = link_to "Domain Admins Administrieren", admins_path, class: 'btn btn-primary btn-block'
     - if can? :manage, Domain
       = link_to "Domains Administrieren", domains_path, class: 'btn btn-primary btn-block'
     - if can? :create, User
       = link_to "Postfächer Administrieren", users_path, class: 'btn btn-primary btn-block'
     - if can? :create, Alias
       = link_to "Aliase Administrieren", aliases_path, class: 'btn btn-primary btn-block'
-
-= console
+    - if can? :create, Alias
+      = link_to "Weiterleitungen Administrieren", forwardings_path, class: 'btn btn-primary btn-block'
+= console if ENV['RAILS_ENV'] == 'development'
