@@ -8,3 +8,71 @@
           li = link_to "https://thomas-leister.de/internet/mailserver-ubuntu-server-dovecot-postfix-mysql/"
           li = link_to "https://www.digitalocean.com/community/tutorials/how-to-install-and-configure-dkim-with-postfix-on-debian-wheezy"
           li = link_to "https://thomas-leister.de/open-source/linux/ubuntu/postfix-amavis-spamfilter-spamassassin-sieve/"
+
+.row
+  .col-md-12
+    .panel.panel-primary
+      .panel-heading
+        h3
+          |  /etc/postfix/virtual/mysql-aliases.cf
+      .panel-body
+        pre
+          markdown:
+            ```
+            user = vmail_username
+            password = vmail_password
+            dbname = vmail_database
+            hosts = 127.0.0.1
+            query =
+            SELECT
+              CONCAT(d_users.username, '@', d_domains.name) AS destination
+              FROM aliases
+                JOIN domains AS s_domains ON s_domains.id = aliases.domain_source_id
+                JOIN users AS d_users ON d_users.id = aliases.user_destination_id
+                JOIN domains AS d_domains ON d_domains.id = aliases.domain_destination_id
+              WHERE aliases.user_source = '%u' AND s_domains.name = '%d'
+            UNION DISTINCT
+            SELECT
+              forwardings.destination AS destination
+              FROM forwardings
+                JOIN domains AS s_domains ON s_domains.id = forwardings.domain_id
+                JOIN users AS s_users ON s_users.id = forwardings.user_id
+              WHERE s_users.username = '%u' AND s_domains.name = '%d';
+            ```
+
+.row
+  .col-md-12
+    .panel.panel-primary
+      .panel-heading
+        h3
+          |  /etc/postfix/virtual/mysql-domains.cf
+      .panel-body
+        pre
+          markdown:
+            ```
+            user = vmail_username
+            password = vmail_password
+            dbname = vmail_database
+            hosts = 127.0.0.1
+            query = SELECT name FROM domains WHERE name='%s';
+            ```
+
+.row
+  .col-md-12
+    .panel.panel-primary
+      .panel-heading
+        h3
+          |  /etc/postfix/virtual/mysql-aliases.cf
+      .panel-body
+        pre
+          markdown:
+            ```
+            user = vmail_username
+            password = vmail_password
+            dbname = vmail_database
+            hosts = 127.0.0.1
+            query = SELECT
+              CONCAT(domains.name, '/', users.username) AS maildir
+              FROM users JOIN(domains) ON (domains.id = users.domain_id)
+              WHERE users.username='%u' AND domains.name='%d'
+            ```
