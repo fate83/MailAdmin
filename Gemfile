@@ -5,6 +5,8 @@ source 'https://rubygems.org'
 gem 'rails', '4.2.0.rc2'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
+gem 'mysql2'
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -64,3 +66,4 @@ gem 'autoprefixer-rails'
 # Slim stuff
 gem 'slim'
 gem 'slim-rails'
+gem 'redcarpet'
