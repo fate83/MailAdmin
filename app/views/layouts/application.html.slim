@@ -29,6 +29,8 @@ html
                 li = link_to "Aliase", aliases_path
               - if can? :create, Forwarding
                 li = link_to "Weiterleitungen", forwardings_path
+              - if current_admin.admin?
+                li = link_to "Quellen und Configs", sources_path
 
           - if admin_signed_in?
             ul.nav.navbar-nav.navbar-right

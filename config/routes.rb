@@ -21,5 +21,7 @@ Rails.application.routes.draw do
   resources :aliases
 
   get 'home/index'
+  get 'home/sources', as: 'sources'
+
   root to: "home#index"
 end
