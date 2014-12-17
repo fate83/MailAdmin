@@ -19,3 +19,5 @@
 MailAdmin.iml
 modules.xml
 .rakeTasks
+config/database.yml
+config/secrets.yml
