@@ -1,9 +1,8 @@
-== README
+== MailAdmin
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This Readme is still to be written. For now notice that this project is beta. However it will run if you want to try it. Fork and let me know if you have a feature request. If you try it out you do on your own risk.
 
-Things you may want to cover:
+Things to do:
 
 * Ruby version
 
