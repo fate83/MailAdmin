@@ -61,6 +61,9 @@ class AdminsController < ApplicationController
 
   private
     def admin_params
-      params.require(:admin).permit(:email, :admin, :password, :password_confirmation)
+      allowed_params = [ :email, :password, :password_confirmation ]
+      allowed_params << :admin if @current_admin.admin?
+
+      params.require(:admin).permit(allowed_params)
     end
 end
