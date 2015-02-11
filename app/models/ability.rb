@@ -9,7 +9,9 @@ class Ability
       can :manage, :all
     end
 
-    can :change_password, Admin, admin_id: admin.id
+    can :change_password, Admin do |a|
+      admin.id == a.id
+    end
 
     can :create, User if admin.domains.any?
     can :rud, User do |user|
