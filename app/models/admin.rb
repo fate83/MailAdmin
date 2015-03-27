@@ -8,4 +8,8 @@ class Admin < ActiveRecord::Base
   has_many :users, through: :domains
   has_many :aliases, through: :users
   has_many :forwardings, through: :users
+
+  def admin?
+    admin
+  end
 end
