@@ -1,6 +1,6 @@
 == MailAdmin
 
-This Readme is still to be written. For now notice that this project is beta. However it will run if you want to try it. Fork and let me know if you have a feature request. If you try it out you do on your own risk.
+Management frontend for mailaccount adminsitration.
 
 Things to do:
 
@@ -19,8 +19,6 @@ Things to do:
 * Services (job queues, cache servers, search engines, etc.)
 
 * Deployment instructions
-
-* ...
 
 
 Please feel free to use a different markup language if you do not plan to run
